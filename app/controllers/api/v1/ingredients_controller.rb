@@ -9,7 +9,12 @@ module Api
       rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
 
       def index
-        render json: recipe.ingredients
+        ingredients = if params[:unit]
+                        recipe.ingredients.unit(params[:unit])
+                      else
+                        recipe.ingredients
+                      end
+        render json: ingredients
       end
 
       def show

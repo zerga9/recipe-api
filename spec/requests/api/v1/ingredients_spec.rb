@@ -29,6 +29,16 @@ RSpec.describe 'Api::V1::Ingredients', type: :request do
     end
 
     it { expect(response).to have_http_status(:ok) }
+
+    context 'when index scoped' do
+      it 'returns only scoped attributes' do
+        create(:ingredient, recipe: recipe)
+        get "/api/v1/recipes/#{recipe.id}/ingredients?unit=metric"
+        attributes = json_data[0][:attributes]
+        expect(attributes).not_to include(:imperial)
+        expect(attributes).to include(:metric)
+      end
+    end
   end
 
   describe '#show' do
