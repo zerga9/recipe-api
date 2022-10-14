@@ -103,4 +103,4 @@ POST `/api/v1/recipes/{recipe_id}/ratings` ==> Add Rating to Recipe
 }
 ```
 
-GET `/api/v1/recipes/{recipe_id}/ratings` ==> Get all Ratings to Recipe
+GET `/api/v1/recipes/{recipe_id}/ratings` ==> Get all Ratings of Recipe
