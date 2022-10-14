@@ -60,7 +60,8 @@ module Api
       end
 
       def recipe_params
-        params.require(:recipe).permit(:title, :description, :process)
+        params.require(:recipe).permit(:title, :description, :process,
+                                       ingredients_attributes: [:id, :name, metric: %i[amount unit], imperial: %i[amount unit]])
       end
 
       def invalid_record(exception)
