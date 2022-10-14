@@ -7,7 +7,7 @@ RSpec.describe 'Sessions', type: :request do
 
   describe 'POST /login' do
     context 'with valid credentials' do
-      it 'redirects the user' do
+      it 'lets the user login' do
         post '/login',
              params: { user: { username: user.username, password: user.password } }
 
@@ -16,11 +16,18 @@ RSpec.describe 'Sessions', type: :request do
     end
 
     context 'with invalid credentials' do
-      it 'does not redirect the user' do
+      it 'does not let the user login' do
         post '/login',
              params: { user: { username: user.username, password: 'nottherightpassword' } }
         expect(response).to have_http_status(:not_found)
         expect(json_body[:errors]).to include('Invalid username or password')
+      end
+    end
+
+    context 'when logging out' do
+      it 'logs the user out' do
+        delete '/logout'
+        expect(json_body[:status]).to include('You are logged out')
       end
     end
   end

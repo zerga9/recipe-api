@@ -10,4 +10,8 @@ RSpec.describe User, type: :model do
     it { should validate_uniqueness_of :username }
     it { should have_secure_password }
   end
+
+  context 'associations' do
+    it { should have_many :recipes }
+  end
 end
