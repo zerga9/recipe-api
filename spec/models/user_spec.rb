@@ -12,6 +12,7 @@ RSpec.describe User, type: :model do
   end
 
   context 'associations' do
+    it { should have_many :ratings }
     it { should have_many :recipes }
   end
 end

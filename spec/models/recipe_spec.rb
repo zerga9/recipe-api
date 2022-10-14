@@ -12,6 +12,7 @@ RSpec.describe Recipe, type: :model do
   context 'associations' do
     it { should belong_to :user }
     it { should have_many :ingredients }
+    it { should have_many :ratings }
     it { should accept_nested_attributes_for :ingredients }
   end
 end

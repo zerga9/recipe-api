@@ -2,6 +2,7 @@
 
 class IngredientSerializer < ActiveModel::Serializer
   belongs_to :recipe
+
   attributes :id, :name, :metric
   attribute :imperial, if: :imperial_scope?
   attribute :metric, if: :metric_scope?
